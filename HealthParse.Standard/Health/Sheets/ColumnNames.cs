@@ -10,7 +10,9 @@ namespace HealthParse.Standard.Health.Sheets
         public static string Duration(DurationUnit unit) => $"Duration ({unit})";
         public static string EnergyBurned(EnergyUnit unit) => $"Energy Burned ({unit})";
         public static string Weight(MassUnit unit) => $"Weight ({unit})";
+        public static string LeanWeight(MassUnit unit) => $"Lean body Mass ({unit})";
         public static string AverageWeight(MassUnit unit) => $"Weight ({unit}, avg)";
+        public static string AverageLeanWeight(MassUnit unit) => $"Lean body Mass ({unit}, avg)";
 
         public static string Steps() => "Steps";
         public static string BodyFatPercentage() => "Body Fat (%)";

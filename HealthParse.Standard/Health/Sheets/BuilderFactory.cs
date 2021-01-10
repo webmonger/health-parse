@@ -14,6 +14,7 @@ namespace HealthParse.Standard.Health.Sheets
             var stepBuilder = new StepBuilder(records, zone);
             var distanceCyclingBuilder = new DistanceCyclingBuilder(records, zone, settings);
             var massBuilder = new MassBuilder(records, zone, settings);
+            var leanMassBuilder = new LeanMassBuilder(records, zone, settings);
             var bodyFatBuilder = new BodyFatPercentageBuilder(records, zone);
             var generalRecordsBuilder = new GeneralRecordsBuilder(records, zone, settings);
             var healthMarkersBuilder = new HealthMarkersBuilder(records, zone);
@@ -29,6 +30,7 @@ namespace HealthParse.Standard.Health.Sheets
                 nutritionBuilder,
                 distanceCyclingBuilder,
                 massBuilder,
+                leanMassBuilder,
                 bodyFatBuilder);
 
             var monthBuilders = Enumerable.Range(0, settings.NumberOfMonthlySummaries)
@@ -56,6 +58,7 @@ namespace HealthParse.Standard.Health.Sheets
                         workoutBuilderFactory,
                         distanceCyclingBuilder,
                         massBuilder,
+                        leanMassBuilder,
                         bodyFatBuilder);
 
                     return new
@@ -70,13 +73,14 @@ namespace HealthParse.Standard.Health.Sheets
                 .Concat(monthBuilders)
                 .Concat(new { builder = (object)stepBuilder, sheetName = SheetNames.Steps, omitEmptyColumns = true })
                 .Concat(new { builder = (object)massBuilder, sheetName = SheetNames.Mass, omitEmptyColumns = true })
+                .Concat(new { builder = (object)leanMassBuilder, sheetName = SheetNames.LeanMass, omitEmptyColumns = true })
                 .Concat(new { builder = (object)bodyFatBuilder, sheetName = SheetNames.BodyFat, omitEmptyColumns = true })
                 .Concat(new { builder = (object)generalRecordsBuilder, sheetName = SheetNames.GeneralRecords, omitEmptyColumns = true })
                 .Concat(new { builder = (object)healthMarkersBuilder, sheetName = SheetNames.HealthMarkers, omitEmptyColumns = true })
                 .Concat(new { builder = (object)nutritionBuilder, sheetName = SheetNames.Nutrition, omitEmptyColumns = true })
                 .Concat(new { builder = (object)distanceCyclingBuilder, sheetName = SheetNames.CyclingDistance, omitEmptyColumns = true })
                 .Concat(workoutBuilderFactory.GetWorkoutBuilders().Select(builder =>
-                    new{builder = (object)builder, sheetName = SheetNames.For(builder.WorkoutKey), omitEmptyColumns = true}))
+                    new { builder = (object)builder, sheetName = SheetNames.For(builder.WorkoutKey), omitEmptyColumns = true }))
                 .Concat(new { builder = (object)settingsBuilder, sheetName = SheetNames.Settings, omitEmptyColumns = true })
                 .ToList();
 

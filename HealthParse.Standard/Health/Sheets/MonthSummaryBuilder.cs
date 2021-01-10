@@ -20,6 +20,7 @@ namespace HealthParse.Standard.Health.Sheets
             WorkoutBuilderFactory workoutBuilderFactory,
             DistanceCyclingBuilder distanceCyclingBuilder,
             MassBuilder massBuilder,
+            LeanMassBuilder leanMassBuilder,
             BodyFatPercentageBuilder bodyFatBuilder)
         {
             _monthDays = Enumerable.Range(1, DateTime.DaysInMonth(targetYear, targetMonth))
@@ -35,6 +36,7 @@ namespace HealthParse.Standard.Health.Sheets
                 .Concat(healthMarkersBuilder.BuildSummaryForDateRange(range))
                 .Concat(nutritionBuilder.BuildSummaryForDateRange(range))
                 .Concat(massBuilder.BuildSummaryForDateRange(range))
+                .Concat(leanMassBuilder.BuildSummaryForDateRange(range))
                 .Concat(distanceCyclingBuilder.BuildSummaryForDateRange(range))
                 .Concat(workoutBuilderFactory.GetWorkoutBuilders().SelectMany(b => b.BuildSummaryForDateRange(range)))
                 ;

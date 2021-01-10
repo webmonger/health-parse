@@ -22,6 +22,7 @@ namespace HealthParse.Standard.Health.Sheets
             NutritionBuilder nutritionBuilder,
             DistanceCyclingBuilder distanceCyclingBuilder,
             MassBuilder massBuilder,
+            LeanMassBuilder leanMassBuilder,
             BodyFatPercentageBuilder bodyFatBuilder)
         {
             var workoutList = workouts.ToList();
@@ -44,6 +45,7 @@ namespace HealthParse.Standard.Health.Sheets
                 .Concat(healthMarkersBuilder.BuildSummary())
                 .Concat(nutritionBuilder.BuildSummary())
                 .Concat(massBuilder.BuildSummary())
+                .Concat(leanMassBuilder.BuildSummary())
                 .Concat(distanceCyclingBuilder.BuildSummary())
                 .Concat(workoutBuilderFactory.GetWorkoutBuilders().SelectMany(b => b.BuildSummary()))
                 ;

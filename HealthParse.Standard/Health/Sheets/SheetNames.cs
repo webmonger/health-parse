@@ -5,6 +5,7 @@
         public const string Summary = "Overall Summary";
         public const string Steps = "Steps";
         public const string Mass = "Mass (Weight)";
+        public const string LeanMass = "Lean Mass (Weight)";
         public const string BodyFat = "Body Fat %";
         public const string GeneralRecords = "General Records";
         public const string HealthMarkers = "Health Markers";
